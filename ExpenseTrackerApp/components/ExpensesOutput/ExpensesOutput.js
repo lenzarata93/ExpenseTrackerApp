@@ -1,6 +1,7 @@
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import ExpensesSummary from "./ExpensesSummary";
 import ExpensesList from "./ExpensesList";
+import { GlobalStyles } from "../../constants/styles";
 
 const dummy_expenses = [
   {
@@ -35,14 +36,37 @@ const dummy_expenses = [
     imgUrl:
       "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.otssolicitors.co.uk%2Fnews%2Flandlords-and-advance-rent-payments%2F&psig=AOvVaw1kxwUYeZGm1sc56wfL8pvN&ust=1720532227343000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCKCzo5TIl4cDFQAAAAAdAAAAABAJ",
   },
+  {
+    id: "e5",
+    title: "Buy a car",
+    amount: 22000,
+    date: new Date("2024-06-12"),
+    imgUrl:
+      "https://www.google.com/url?sa=i&url=https%3A%2F%2Fpixabay.com%2Fbg%2Fimages%2Fsearch%2Fbmw%2520f30%2F&psig=AOvVaw3ZhUJzeL-O7Cx9Dx1WrorI&ust=1720533972724000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCKCchdTOl4cDFQAAAAAdAAAAABAE",
+  },
 ];
 
 function ExpensesOutput({ expenses, expensesPeriod }) {
   return (
-    <View>
+    <View style={styles.container}>
       <ExpensesSummary expenses={dummy_expenses} period={expensesPeriod} />
-      <ExpensesList expenses ={dummy_expenses}/>
+      <ExpensesList expenses={dummy_expenses} />
     </View>
   );
 }
 export default ExpensesOutput;
+
+const styles = StyleSheet.create({
+  container: {
+padding: 24,
+backgroundColor: GlobalStyles.colors.primary700,
+flex: 1,
+
+  },
+  summary:{
+
+  },
+  list:{
+    
+  }
+})

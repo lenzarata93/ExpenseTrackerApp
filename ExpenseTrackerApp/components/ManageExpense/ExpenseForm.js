@@ -3,21 +3,32 @@ import Input from "./Input";
 import Button from "../UI/Button";
 import { useState } from "react";
 
-function ExpenseForm({ submitButtonLabel,onCancel, onSubmit }) {
+function ExpenseForm({ submitButtonLabel, onCancel, onSubmit }) {
   const [inputValues, setInputValues] = useState({
     amount: "",
     date: "",
     title: "",
   });
   function inputChangeHandler(inputIdentifier, enteredValue) {
+    let normalizedValue = enteredValue;
+    if (inputIdentifier === "amount") {
+      normalizedValue = enteredValue.replace(",", ".");
+    }
     setInputValues((currentInputValues) => {
       return {
         ...currentInputValues,
-        [inputIdentifier]: enteredValue,
+        [inputIdentifier]: normalizedValue,
       };
     });
   }
-  function submitHandler() {}
+  function submitHandler() {
+    const expenseData = {
+      amount: +inputValues.amount,
+      date: new Date(inputValues.date),
+      title: inputValues.title,
+    };
+    onSubmit(expenseData);
+  }
 
   return (
     <View style={styles.form}>

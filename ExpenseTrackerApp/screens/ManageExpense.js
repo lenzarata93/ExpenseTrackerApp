@@ -23,25 +23,18 @@ function ManageExpenses({ route, navigation }) {
   function cancelHandler() {
     navigation.goBack();
   }
-  function confirmHandler() {
+  function confirmHandler(expenseData) {
     if (editedExpenseId) {
-      expenseCtx.updateExpense(editedExpenseId, {
-        title: "TEst!!!",
-        amount: 23.0,
-        date: new Date("2024-09-07"),
-      });
+      expenseCtx.updateExpense(editedExpenseId, expenseData);
     } else {
-      expenseCtx.addExpense({
-        title: "TEst",
-        amount: 123.0,
-        date: new Date("2024-07-07"),
-      });
+      expenseCtx.addExpense(expenseData);
     }
     navigation.goBack(); //затваря модала
   }
   return (
     <View style={styles.container}>
       <ExpenseForm
+      onSubmit={confirmHandler}
         onCancel={cancelHandler}
         submitButtonLabel={isEditing ? "Update" : "Add"}
       />

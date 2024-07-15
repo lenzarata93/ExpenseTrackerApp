@@ -24,7 +24,7 @@ function ExpenseForm() {
         label="Title"
         textInputConfig={{
           multiline: true,
-        }}
+        }} 
       />
     </View>
   );
